@@ -1,30 +1,8 @@
-import types from './contactsTypes';
+import { createAction } from '@reduxjs/toolkit';
 
-const addLocalContacts = array => {
-  return {
-    type: types.addLocalContacts,
-    payload: {
-      contacts: array,
-    },
-  };
-};
+const addLocalContacts = createAction('contacts/addFromLocalStor');
+const addContact = createAction('contacts/add');
+const removeContact = createAction('contacts/remove');
+const changeFilter = createAction('filter/change');
 
-const addContact = obj => {
-  return {
-    type: types.addContact,
-    payload: {
-      contact: obj,
-    },
-  };
-};
-
-const removeContact = id => {
-  return {
-    type: types.removeContact,
-    payload: {
-      id,
-    },
-  };
-};
-
-export default { addLocalContacts, addContact, removeContact };
+export default { addLocalContacts, addContact, removeContact, changeFilter };

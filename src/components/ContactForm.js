@@ -109,7 +109,7 @@ class ContactForm extends Component {
           this.setState({
             apearNotice: false,
           }),
-        2000,
+        2400,
       );
     }
     const numberCheck = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/g;
@@ -124,7 +124,7 @@ class ContactForm extends Component {
           this.setState({
             apearNotice: false,
           }),
-        3000,
+        2400,
       );
     }
     const newContact = {
@@ -230,9 +230,9 @@ class ContactForm extends Component {
   }
 }
 
-const mapStateToPtops = state => {
+const mapStateToPtops = ({ contacts }) => {
   return {
-    contacts: state.contacts,
+    contacts: contacts.items,
   };
 };
 

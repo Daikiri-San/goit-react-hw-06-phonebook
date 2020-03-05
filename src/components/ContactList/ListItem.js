@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import withThemeContext from '../hoc/withTheme';
+import contactsActions from '../../redux/contacts/contactsActions';
 
 const Item = styled.li`
   max-width: 54rem;
@@ -51,20 +52,31 @@ const Button = styled.button`
   }
 `;
 
-function ListItem({ name, number, onRemove, theme }) {
+function ListItem({ name, number, onRemoveContact, theme }) {
   return (
     <Item shadow={theme.config.mainShadowBox}>
       <Name>{name}</Name> <Number>{number}</Number>
-      <Button type="button" onClick={onRemove}>
+      <Button type="button" onClick={onRemoveContact}>
         ×
       </Button>
     </Item>
   );
 }
 
-ListItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+const mapStateToPtops = ({ contacts }, ownProps) => {
+  const item = contacts.items.find(({ id }) => id === ownProps.id);
+  return {
+    ...item,
+  };
 };
 
-export default withThemeContext(ListItem);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onRemoveContact: () => dispatch(contactsActions.removeContact(ownProps.id)),
+  };
+};
+
+export default connect(
+  mapStateToPtops,
+  mapDispatchToProps,
+)(withThemeContext(ListItem));

@@ -7,7 +7,6 @@ import Layout from './Layout';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Header from './Header';
-import TextNotification from './TextNotification';
 import '../base.css';
 
 class App extends Component {
@@ -32,42 +31,26 @@ class App extends Component {
     }
   }
 
-  getVisibleContacts = () => {
-    const { contacts, filter } = this.props;
-    return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(filter.toLowerCase()),
-    );
-  };
-
   render() {
     const { apearPage } = this.state;
     const { contacts } = this.props;
-    const visibleContacts = this.getVisibleContacts();
 
     return (
       <ThemeContext>
         <Layout>
           <Header text={'Phonebook'} apearPage={apearPage} />
           <ContactForm />
-
           {contacts.length >= 2 && <Filter />}
-          <ContactList contacts={visibleContacts} />
-          {contacts.length === 0 && (
-            <TextNotification message={'There are no contacts. Add some :)'} />
-          )}
-          {contacts.length > 1 && visibleContacts.length === 0 && (
-            <TextNotification message={'No contacts found :('} />
-          )}
+          <ContactList />
         </Layout>
       </ThemeContext>
     );
   }
 }
 
-const mapStateToPtops = state => {
+const mapStateToPtops = ({ contacts }) => {
   return {
-    contacts: state.contacts,
-    filter: state.filter,
+    contacts: contacts.items,
   };
 };
 

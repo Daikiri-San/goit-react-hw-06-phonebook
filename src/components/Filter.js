@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import filterActions from '../redux/filter/filterActions';
+import contactsActions from '../redux/contacts/contactsActions';
 import withThemeContext from './hoc/withTheme';
 
 const Container = styled.div`
@@ -46,13 +46,6 @@ function Filter({ value, onChangeFilter, theme }) {
   );
 }
 
-const mapStateToPtops = state => {
-  return {
-    contacts: state.contacts,
-    filter: state.filter,
-  };
-};
-
 // const mapDispatchToProps = dispatch => {
 //   return {
 //     onChangeFilter: str => dispatch(filterActions.changeFilter(str)),
@@ -60,10 +53,7 @@ const mapStateToPtops = state => {
 // };
 
 const mapDispatchToProps = {
-  onChangeFilter: filterActions.changeFilter,
+  onChangeFilter: contactsActions.changeFilter,
 };
 
-export default connect(
-  mapStateToPtops,
-  mapDispatchToProps,
-)(withThemeContext(Filter));
+export default connect(null, mapDispatchToProps)(withThemeContext(Filter));
