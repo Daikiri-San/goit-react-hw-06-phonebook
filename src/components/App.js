@@ -48,7 +48,7 @@ class App extends Component {
   }
 }
 
-const mapStateToPtops = ({ contacts }) => {
+const mapStateToProps = ({ contacts }) => {
   return {
     contacts: contacts.items,
   };
@@ -65,4 +65,4 @@ const mapDispatchToProps = {
   addLocalContacts: ContactsActions.addLocalContacts,
 };
 
-export default connect(mapStateToPtops, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

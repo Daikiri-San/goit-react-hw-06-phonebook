@@ -63,7 +63,7 @@ function ListItem({ name, number, onRemoveContact, theme }) {
   );
 }
 
-const mapStateToPtops = ({ contacts }, ownProps) => {
+const mapStateToProps = ({ contacts }, ownProps) => {
   const item = contacts.items.find(({ id }) => id === ownProps.id);
   return {
     ...item,
@@ -77,6 +77,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default connect(
-  mapStateToPtops,
+  mapStateToProps,
   mapDispatchToProps,
 )(withThemeContext(ListItem));

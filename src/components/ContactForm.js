@@ -230,7 +230,7 @@ class ContactForm extends Component {
   }
 }
 
-const mapStateToPtops = ({ contacts }) => {
+const mapStateToProps = ({ contacts }) => {
   return {
     contacts: contacts.items,
   };
@@ -247,6 +247,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-  mapStateToPtops,
+  mapStateToProps,
   mapDispatchToProps,
 )(withThemeContext(ContactForm));

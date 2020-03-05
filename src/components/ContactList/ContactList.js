@@ -52,11 +52,11 @@ ContactList.propTypes = {
   ]),
 };
 
-const mapStateToPtops = ({ contacts }) => {
+const mapStateToProps = ({ contacts }) => {
   return {
     contacts: contacts.items,
     filter: contacts.filter,
   };
 };
 
-export default connect(mapStateToPtops)(ContactList);
+export default connect(mapStateToProps)(ContactList);
