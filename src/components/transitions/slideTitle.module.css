@@ -1,8 +1,8 @@
-.enter {
+.appear {
   transform: translateX(-100%);
 }
 
-.enterActive {
+.appearActive {
   transform: translateX(0);
   transition: transform 250ms ease-in-out;
 }

@@ -10,16 +10,9 @@ import Header from './Header';
 import '../base.css';
 
 class App extends Component {
-  state = {
-    apearPage: false,
-  };
-
   componentDidMount() {
     const savedContacts = localStorage.getItem('contacts');
     const { addLocalContacts } = this.props;
-    this.setState({
-      apearPage: true,
-    });
     if (savedContacts) {
       return addLocalContacts(JSON.parse(savedContacts));
     }
@@ -32,13 +25,12 @@ class App extends Component {
   }
 
   render() {
-    const { apearPage } = this.state;
     const { contacts } = this.props;
 
     return (
       <ThemeContext>
         <Layout>
-          <Header text={'Phonebook'} apearPage={apearPage} />
+          <Header text={'Phonebook'} />
           <ContactForm />
           {contacts.length >= 2 && <Filter />}
           <ContactList />

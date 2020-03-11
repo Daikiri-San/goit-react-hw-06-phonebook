@@ -74,13 +74,14 @@ const Slider = styled.span`
   }
 `;
 
-function Header({ text, apearPage, theme }) {
+function Header({ text, theme }) {
   return (
     <HeaderContenet>
       <CSSTransition
         timeout={500}
-        classNames={slideTitleTransition}
-        in={apearPage}
+        classNames={{ ...slideTitleTransition }}
+        in={true}
+        appear
       >
         <Title color={theme.config.contentColor}>{text}</Title>
       </CSSTransition>

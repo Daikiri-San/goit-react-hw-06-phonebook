@@ -11,15 +11,11 @@ const List = styled.ul`
   margin-bottom: 3rem;
 `;
 
-function ContactList({ contacts, filter }) {
-  const visibleContacts = contacts.filter(({ name }) =>
-    name.toLowerCase().includes(filter.toLowerCase()),
-  );
-
+function ContactList({ contacts, visibleContacts }) {
   return (
     <>
       <TransitionGroup component={List}>
-        {visibleContacts.map(({ id, name, number }) => (
+        {visibleContacts.map(({ id }) => (
           <CSSTransition
             key={id}
             timeout={250}
@@ -55,7 +51,9 @@ ContactList.propTypes = {
 const mapStateToProps = ({ contacts }) => {
   return {
     contacts: contacts.items,
-    filter: contacts.filter,
+    visibleContacts: contacts.items.filter(({ name }) =>
+      name.toLowerCase().includes(contacts.filter.toLowerCase()),
+    ),
   };
 };
 
